@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body ng-app="myApp" ng-controller="todoCtrl">
+
+<h2>My Family History List</h2>
+
+<form ng-submit="todoAdd()">
+    <input type="text" ng-model="yourName" size="20" placeholder="Your Name">
+    <input type="text" ng-model="fatherName" size="20" placeholder="Father's Name">
+    <input type="text" ng-model="motherName" size="20" placeholder="Mother's Name">
+    <input type="submit" value="Add New">
+</form>
+
+<br>
+
+<div ng-repeat="x in historyList">
+    <input type="checkbox" ng-model="x.done"> <span ng-bind="x.nameText.name"></span>,
+    <span ng-bind="x.nameText.father"></span>,
+    <span ng-bind="x.nameText.mother"></span>
+</div>
+
+<p><button ng-click="remove()">Remove marked</button></p>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('todoCtrl', function($scope) {
+    $scope.historyList = [];
+    $scope.todoAdd = function() {
+        $scope.historyList.push({nameText:{name:$scope.yourName, father:$scope.fatherName, mother:$scope.motherName}, done:false});
+        $scope.yourName = "";
+        $scope.fatherName = "";
+        $scope.motherName = "";
+    };
+
+    $scope.remove = function() {
+        var oldList = $scope.historyList;
+        $scope.historyList = [];
+        angular.forEach(oldList, function(x) {
+            if (!x.done) $scope.historyList.push(x);
+        });
+    };
+});
+</script>
+
+</body>
+</html>
