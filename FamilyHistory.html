@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<body ng-app="myApp" ng-controller="todoCtrl">
+<head>
+<style>
+span {
+    color: navy;
+    font-size: 20px;
+}
+
+h2 {
+    color: navy;
+}
+</style>
+</head>
+<body ng-app="myApp" ng-controller="todoCtrl" style="background-color: lightblue">
 
 <h2>My Family History List</h2>
 
@@ -21,6 +33,10 @@
 </div>
 
 <p><button ng-click="remove()">Remove marked</button></p>
+
+<div>
+	<img src="./family.jpg">
+</div>
 
 <script>
 var app = angular.module('myApp', []);
